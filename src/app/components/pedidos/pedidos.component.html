@@ -1,0 +1,54 @@
+<div class="container">
+    <h2>Pedidos</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Cliente</th>
+                <th>Fecha del Pedido</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pedido of pedidos">
+                <td>{{ pedido.id }}</td>
+                <td>{{ pedido.clienteId }}</td>
+                <td>{{ pedido.fechaCreacion | date }}</td>
+                <td>{{ pedido.total | currency }}</td>
+                <td>
+                    <button class="btn btn-info" (click)="openModal(pedido)">Ver Detalles</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div #pedidoModal class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pedidoModalLabel">Detalles del pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="content">
+                    <ul class="list">
+                      <li class="list-item" *ngFor="let detalle of detalles">
+                        <div class="thumbnail">
+                          <img [src]="detalle.platoImagen" />
+                        </div>
+                        <div class="details">
+                          <h2>{{ detalle.platoNombre }}</h2>
+                          <div class="end">
+                            <p>Cantidad: {{ detalle.cantidad }}</p>
+                            <p>Subtotal: {{ detalle.subtotal | currency }}</p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

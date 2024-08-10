@@ -1,0 +1,80 @@
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <button class="btn btn-primary mb-3" (click)="openModal()">Añadir Categoría</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Imagen</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let categoria of categorias">
+                <td>{{ categoria.id }}</td>
+                <td>{{ categoria.nombres}}</td>
+                <td><img *ngIf="categoria.img" [src]="categoria.img" alt="Imagen del producto" width="50"></td>
+                <td>
+                    <button class="btn btn-warning me-2" (click)="openModal(categoria)">Editar</button>
+                    <button class="btn btn-danger" (click)="deleteCategoria(categoria.nombres, categoria.img)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div #categoriaModal class="modal fade" id="categoriaModal" tabindex="-1" aria-labelledby="categoriaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoriaModalLabel">{{ isEdit ? 'Editar' : 'Añadir' }} Categoría</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="categoriaForm">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" formControlName="nombres">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Imagen</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="imageSource" id="localImage"
+                                    [checked]="isLocalImage" (change)="toggleImageSource(true)">
+                                <label class="form-check-label" for="localImage">
+                                    Subir desde el dispositivo
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="imageSource" id="urlImage"
+                                    [checked]="!isLocalImage" (change)="toggleImageSource(false)">
+                                <label class="form-check-label" for="urlImage">
+                                    Usar URL de la imagen
+                                </label>
+                            </div>
+                            <div *ngIf="isLocalImage" class="mt-2">
+                                <input type="file" (change)="onImageChange($event)" accept="image/*"
+                                    class="form-control">
+                            </div>
+                            <div *ngIf="!isLocalImage" class="mt-2">
+                                <input type="text" class="form-control" placeholder="URL de la imagen"
+                                    formControlName="imagen" (input)="imagenURL = categoriaForm.get('imagen')?.value">
+                            </div>
+                            <img *ngIf="imagenURL" [src]="imagenURL" alt="Vista previa de la imagen"
+                                class="img-fluid mt-2">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="saveCategoria()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

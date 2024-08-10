@@ -1,0 +1,18 @@
+/* Estilos para el contenedor del editor */
+
+.quill-editor {
+  border: 1px solid #ced4da;
+  /* Agrega un borde alrededor del editor */
+  border-radius: .25rem;
+  /* Bordes redondeados */
+  padding: 0.5rem;
+  /* Espaciado interno */
+}
+
+
+/* Estilos para el área de texto del editor */
+
+.ql-editor {
+  min-height: 150px;
+  /* Altura mínima del editor */
+}

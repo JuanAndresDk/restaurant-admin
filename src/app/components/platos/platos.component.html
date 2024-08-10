@@ -1,0 +1,76 @@
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <button class="btn btn-primary mb-3" (click)="openModal()">Añadir plato</button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Imagen</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plato of platos">
+          <td>{{ plato.nombre }}</td>
+          <td>{{ plato.descripcion }}</td>
+          <td>{{ plato.categoriaId }}</td>
+          <td>{{ plato.precio | currency }}</td>
+          <td><img *ngIf="plato.imagen" [src]="plato.imagen" alt="Imagen del plato" width="50"></td>
+          <td>
+            <button class="btn btn-warning me-2" (click)="openModal(plato)">Editar</button>
+            <button class="btn btn-danger" (click)="deletePlato(plato.id!,plato.imagen)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Modal -->
+    <div #platoModal class="modal fade" id="platoModal" tabindex="-1" aria-labelledby="platoModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="platoModalLabel">{{ isEdit ? 'Editar' : 'Añadir' }} Plato</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="platoForm">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+              </div>
+              <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea class="form-control" id="descripcion" formControlName="descripcion"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="categoria" class="form-label">Categoría</label>
+                <select class="form-select" id="categoria" formControlName="categoriaId">
+                  <option value="" disabled>Selecciona una categoría</option>
+                  <option *ngFor="let categoria of categorias" [value]="categoria.nombres">{{ categoria.nombres }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="precio" formControlName="precio">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Imagen</label>
+                <input type="file" (change)="onImageChange($event)" accept="image/*" class="form-control">
+                <img *ngIf="imagenURL" [src]="imagenURL" alt="Vista previa de la imagen" class="img-fluid mt-2">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="savePlato()">{{ isEdit ? 'Actualizar' : 'Guardar' }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,83 @@
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <button class="btn btn-primary mb-3" (click)="openModal()">Añadir Usuario</button>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombres</th>
+                <th>Email</th>
+                <th>Foto</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <td>{{ usuario.cedula }}</td>
+                <td>{{ usuario.nombres }} {{ usuario.apellidos }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>
+                    <img [src]="usuario.foto" alt="Foto" style="width: 100px; height: auto;">
+                </td>
+                <td>{{ usuario.rol }}</td>
+                <td>
+                    <button class="btn btn-warning me-2" (click)="openModal(usuario)">Editar</button>
+                    <button class="btn btn-danger" (click)="deleteUsuario(usuario.id!)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div #usuarioModal class="modal fade" id="usuarioModal" tabindex="-1" aria-labelledby="usuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="usuarioModalLabel">{{ usuarioForm.get('_id')?.value ? 'Editar' : 'Añadir' }} Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="usuarioForm">
+                        <div class="mb-3">
+                            <label for="cedula" class="form-label">Cédula</label>
+                            <input type="number" class="form-control" id="cedula" formControlName="cedula">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" id="nombres" formControlName="nombres">
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" formControlName="apellidos">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" formControlName="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Foto (URL)</label>
+                            <input type="text" class="form-control" id="foto" formControlName="foto">
+                            <img *ngIf="usuarioForm.get('foto')?.value" [src]="usuarioForm.get('foto')?.value" alt="Foto" style="width: 100px; height: auto; margin-top: 10px;">
+                        </div>
+                        <div class="mb-3">
+                            <label for="rol" class="form-label">Rol</label>
+                            <select class="form-select" id="rol" formControlName="rol">
+                                <option value="" disabled>Selecciona un rol</option>
+                                <option value="admin">Administrador</option>
+                                <option value="cliente">Cliente</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="saveUsuario()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
