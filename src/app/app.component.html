@@ -1,5 +1,5 @@
 <main>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="!isLoginPage">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="!isLoginPage">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
                 <i class="fas fa-user"></i> Mi cuenta
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <!-- <li><a class="dropdown-item" routerLink="/myaccount"><i class="fas fa-user-circle"></i> Perfil</a></li> -->
+              //Comentado   <li><a class="dropdown-item" routerLink="/myaccount"><i class="fas fa-user-circle"></i> Perfil</a></li> 
                 <li><a class="dropdown-item" routerLink="/passwordreset"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
                 <li>
                   <hr class="dropdown-divider">
@@ -42,6 +42,79 @@
   
     <section class="content">
       <router-outlet></router-outlet>
-    </section>
-  </main>
-  
+    </section> -->
+
+
+  <nz-layout style="min-height: 100vh;">
+    <nz-sider *ngIf="!isLoginPage" nzCollapsible nzWidth="200px" style="position: fixed; height: 100vh;">
+      <div class="logo"></div>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+
+          <li nz-menu-item>
+            <a href="javascript:void(0);" routerLink="/platos">
+              <span nz-icon >
+                <fa-icon [icon]="['fas', 'utensils']"></fa-icon>
+              </span>
+              <span>Platos</span>
+            </a>
+          </li>
+
+          <li nz-menu-item>
+            <a href="javascript:void(0);" routerLink="/categorias">
+              <span nz-icon >
+                <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+              </span>              
+              <span>Categorias</span>
+            </a>
+          </li>
+
+          <li nz-menu-item>
+            <a href="javascript:void(0);" routerLink="/pedidos">
+              <span nz-icon >
+                <fa-icon [icon]="['fas', 'box']"></fa-icon>
+              </span>              
+              <span>Pedidos</span>
+            </a>
+          </li>
+
+          <li nz-menu-item>
+            <a href="javascript:void(0);" routerLink="/usuarios">
+              <span nz-icon>
+                <fa-icon [icon]="['fas', 'users']"></fa-icon>
+              </span>              
+              <span>Usuarios</span>
+            </a>
+          </li>
+        <!-- Mandar al final -->
+        <li nz-submenu nzTitle="User" nzIcon="user">
+          <ul>
+            <li nz-menu-item>
+              <a href="javascript:void(0);" routerLink="/cambiar-contrasena">
+                <span nz-icon>
+                  <fa-icon [icon]="['fas', 'key']"></fa-icon>
+                </span>
+                <span>Cambiar Contraseña</span>
+              </a>
+            </li>
+            <li nz-menu-item (click)="logout()">
+              <span nz-icon>
+                <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
+              </span>
+              <span>Cerrar Sesión</span>
+            </li>
+          </ul>
+        </li>        
+      </ul>
+    </nz-sider>
+    <nz-layout style="margin-left: 200px;">
+      <nz-content style="margin: 24px 16px 0; overflow: initial;">
+        <router-outlet></router-outlet>
+      </nz-content>
+      <nz-footer style="text-align: center;">Ant Design ©2020 Implement By Angular</nz-footer>
+    </nz-layout>
+  </nz-layout>
+
+
+</main>
+
+

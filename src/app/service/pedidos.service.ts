@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PedidosService {
 
-  private apiUrl = 'http://localhost:3000/api'; 
+  private apiUrl = 'https://api-restaurant-i0e5.onrender.com/api'; 
 
   constructor(private http: HttpClient) { }
 

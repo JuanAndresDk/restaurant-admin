@@ -10,7 +10,7 @@
                 <th>Cédula</th>
                 <th>Nombres</th>
                 <th>Email</th>
-                <th>Foto</th>
+                <th>imagen</th>
                 <th>Rol</th>
                 <th>Acciones</th>
             </tr>
@@ -21,7 +21,7 @@
                 <td>{{ usuario.nombres }} {{ usuario.apellidos }}</td>
                 <td>{{ usuario.email }}</td>
                 <td>
-                    <img [src]="usuario.foto" alt="Foto" style="width: 100px; height: auto;">
+                    <img [src]="usuario.imagen" alt="imagen" style="width: 100px; height: auto;">
                 </td>
                 <td>{{ usuario.rol }}</td>
                 <td>
@@ -59,9 +59,9 @@
                             <input type="email" class="form-control" id="email" formControlName="email">
                         </div>
                         <div class="mb-3">
-                            <label for="foto" class="form-label">Foto (URL)</label>
-                            <input type="text" class="form-control" id="foto" formControlName="foto">
-                            <img *ngIf="usuarioForm.get('foto')?.value" [src]="usuarioForm.get('foto')?.value" alt="Foto" style="width: 100px; height: auto; margin-top: 10px;">
+                            <label for="imagen" class="form-label">Imagen (URL)</label>
+                            <input type="text" class="form-control" id="imagen" formControlName="imagen">
+                            <img *ngIf="usuarioForm.get('imagen')?.value" [src]="usuarioForm.get('imagen')?.value" alt="imagen" style="width: 100px; height: auto; margin-top: 10px;">
                         </div>
                         <div class="mb-3">
                             <label for="rol" class="form-label">Rol</label>

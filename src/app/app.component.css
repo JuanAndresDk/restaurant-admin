@@ -1,4 +1,4 @@
-.dropdown-content {
+/* .dropdown-content {
     display: none;
     position: fixed;
     background-color: #9195af;
@@ -26,7 +26,7 @@
 .dropdown:hover .dropbtn {
     background-color: #6f7edd;
 }
-/* Asegúrate de que los elementos dentro del navbar tengan suficiente espacio entre ellos */
+
 .navbar-animmenu {
     display: flex;
     align-items: center;
@@ -34,4 +34,38 @@
 
 .ms-auto {
     margin-left: auto;
+} */
+
+
+/* ///////// */
+
+
+
+
+.logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+}
+
+.nz-menu-item fa-icon, 
+.nz-submenu-title fa-icon {
+  margin-right: 8px;  /* Añade un espacio entre el icono y el texto */
+  vertical-align: middle;  /* Alinea verticalmente el icono con el texto */
+  font-size: 16px;  /* Ajusta el tamaño del icono */
+}
+
+.nz-submenu-title {
+  display: flex;
+  align-items: center;
+  padding-left: 24px; /* Ajusta la distancia desde el borde izquierdo */
+}
+
+.nz-submenu-title fa-icon {
+  margin-right: 12px; /* Espacio entre el icono del submenu y el texto */
+}
+
+.nz-menu-item a {
+  display: flex;
+  align-items: center;
 }
