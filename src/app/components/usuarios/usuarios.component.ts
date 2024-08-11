@@ -24,7 +24,7 @@ export class UsuariosComponent implements OnInit {
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      foto: [''],
+      imagen: [''],
       rol: ['', Validators.required]
     });
   }
