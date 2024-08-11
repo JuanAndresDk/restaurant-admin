@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoriasService {
-  private apiUrl = 'http://localhost:3000/api/categorias'; // Reemplaza con tu URL de backend
+  private apiUrl = 'https://api-restaurant-i0e5.onrender.com/api/categorias'; // Reemplaza con tu URL de backend
 
   constructor(private http: HttpClient) {}
 

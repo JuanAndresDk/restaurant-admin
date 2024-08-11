@@ -5,7 +5,7 @@ export interface User {
     apellidos: string;
     email: string;
     password: string;
-    foto?: string;
+    imagen?: string;
     rol: string;
   }
   
